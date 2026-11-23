@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="SpendWise helps you plan a budget, track expenses and understand your spending.">
+  <title>SpendWise | Personal Budget Tracker</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#" aria-label="SpendWise home"><span class="brand-mark">S</span><span>Spend<span class="brand-light">Wise</span></span></a>
+      <div class="side-label">WORKSPACE</div>
+      <a class="nav-link active" href="#overview"><span>▦</span> Overview</a>
+      <a class="nav-link" href="#transactions"><span>↕</span> Transactions</a>
+      <a class="nav-link" href="#budget"><span>◎</span> My budget</a>
+      <div class="sidebar-note"><div class="note-icon">✦</div><strong>Small steps add up.</strong><p>Keep an eye on today’s spending to build a better tomorrow.</p></div>
+      <div class="profile"><div class="avatar">B</div><div><strong>My workspace</strong><small>Personal account</small></div></div>
+    </aside>
+
+    <main class="main-content" id="overview">
+      <header class="topbar"><div><p class="eyebrow">YOUR MONEY, IN FOCUS</p><h1>Good day! <span>✦</span></h1><p class="subheading">Here’s what’s happening with your money.</p></div><div class="today-pill"><span class="status-dot"></span><span id="today-date">Your dashboard</span></div></header>
+
+      <section class="summary-grid" aria-label="Budget summary">
+        <article class="summary-card balance-card"><div class="card-top"><span>Total budget</span><span class="card-icon">◈</span></div><div class="amount" id="budget-total">KSh 50,000</div><p class="card-foot">Your planned monthly budget</p></article>
+        <article class="summary-card"><div class="card-top"><span>Total spent</span><span class="card-icon spent-icon">↗</span></div><div class="amount" id="spent-total">KSh 0</div><p class="card-foot">Your recorded expenses</p></article>
+        <article class="summary-card"><div class="card-top"><span>Remaining</span><span class="card-icon remaining-icon">✓</span></div><div class="amount" id="remaining-total">KSh 50,000</div><p class="card-foot">Available to spend</p></article>
+      </section>
+
+      <section class="content-grid">
+        <article class="panel budget-panel" id="budget">
+          <div class="section-heading"><div><p class="eyebrow">MONTHLY PLAN</p><h2>Budget overview</h2></div><span class="soft-tag">This month</span></div>
+          <div class="budget-center"><div class="progress-ring" id="progress-ring"><div class="ring-inner"><strong id="spent-percent">0%</strong><span>spent</span></div></div><div class="budget-caption"><strong id="budget-caption">You’re off to a fresh start!</strong><span id="budget-message">Add an expense to see your progress.</span></div></div>
+          <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
+          <div class="budget-legend"><span><i class="legend-dot teal"></i>Spent</span><strong id="budget-spent-label">KSh 0</strong><span><i class="legend-dot pale"></i>Available</span><strong id="budget-left-label">KSh 50,000</strong></div>
+          <form id="budget-form" class="budget-edit"><label for="budget-input">Update monthly budget (KSh)</label><div class="inline-form"><input id="budget-input" type="number" min="1" step="1" value="50000" required><button type="submit" class="button button-outline">Update</button></div></form>
+        </article>
+
+        <article class="panel add-panel">
+          <div class="section-heading"><div><p class="eyebrow">STAY IN CONTROL</p><h2>Add an expense</h2></div><span class="add-symbol">＋</span></div>
+          <form id="expense-form">
+            <label for="expense-name">Expense name</label><input id="expense-name" type="text" placeholder="e.g. Groceries" maxlength="60" required>
+            <div class="form-row"><div><label for="expense-amount">Amount (KSh)</label><input id="expense-amount" type="number" min="1" step="1" placeholder="0" required></div><div><label for="expense-category">Category</label><select id="expense-category" required><option value="Food">Food</option><option value="Transport">Transport</option><option value="Bills">Bills</option><option value="Education">Education</option><option value="Shopping">Shopping</option><option value="Health">Health</option><option value="Other">Other</option></select></div></div>
+            <label for="expense-date">Date</label><input id="expense-date" type="date" required>
+            <button class="button button-primary full-button" type="submit">＋ Add expense</button>
+            <p class="form-feedback" id="form-feedback" role="status" aria-live="polite"></p>
+          </form>
+        </article>
+      </section>
+
+      <section class="panel transactions-panel" id="transactions">
+        <div class="section-heading transaction-heading"><div><p class="eyebrow">WHERE YOUR MONEY GOES</p><h2>Recent transactions</h2></div><div class="transaction-tools"><select id="category-filter" aria-label="Filter transactions by category"><option value="All">All categories</option><option>Food</option><option>Transport</option><option>Bills</option><option>Education</option><option>Shopping</option><option>Health</option><option>Other</option></select><button class="button button-text" id="clear-all" type="button">Clear all</button></div></div>
+        <div class="table-wrap"><table><thead><tr><th>DESCRIPTION</th><th>CATEGORY</th><th>DATE</th><th class="align-right">AMOUNT</th><th><span class="sr-only">Action</span></th></tr></thead><tbody id="expense-list"><tr class="empty-row"><td colspan="5"><div class="empty-state"><span>◌</span><strong>No expenses yet</strong><small>Your transactions will appear here when you add them.</small></div></td></tr></tbody></table></div>
+        <div class="table-footer"><span id="transaction-count">0 transactions</span><span>Showing your recorded expenses</span></div>
+      </section>
+      <footer class="footer">Made with care <span>♥</span> · SpendWise Personal Budget Tracker</footer>
+    </main>
+  </div>
+</body>
+</html>
